@@ -53,11 +53,11 @@ class RbcClient(TornadoHttpClientMixin, CurrencyMixin):
     url = 'https://www.rbc.ru/ajax/indicators?_={}'
     available_currencies = ('USD', 'EUR',)
 
-    def get_currency_data(self) -> Union[List[List[str]], None]:
+    def get_currency_data(self) -> Union[List[str], None]:
         data = self.fetch_data()
         cash_index = self.available_currencies.index(self.currency_name)
         cash_data = data['cash'][cash_index]
-        return [[cash_data['date'], cash_data['value1'], cash_data['value2']]]
+        return [cash_data['date'], cash_data['value1'], cash_data['value2']]
 
 
 if __name__ == '__main__':
@@ -68,5 +68,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
     rbc_client.currency_name = args.currency
     tabulate_data = rbc_client.get_currency_data()
-    print(tabulate(tabulate_data, TABULATE_HEADERS, tablefmt='grid'))
+    print(tabulate([tabulate_data], TABULATE_HEADERS, tablefmt='grid'))
     rbc_client.close_http_client()
