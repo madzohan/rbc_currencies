@@ -1,4 +1,4 @@
-# Parse rbc.ru currencies
+# rbc.ru currencies parser
 
 ## Installation
 - `pip3 install pipenv`
@@ -12,7 +12,7 @@
 | 23:36  | 67.05 |  64.93 |
 +--------+-------+--------+
 
-> pipenv run python app.py EUR
+> pipenv run python script.py EUR
 +--------+-------+--------+
 | Time   |   Buy |   Sell |
 +========+=======+========+
